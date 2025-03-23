@@ -7,6 +7,7 @@ import android.view.accessibility.AccessibilityNodeInfo
 import com.jinruoxinchen.oneunlimitos.accessibility.OneAccessibilityService
 import com.jinruoxinchen.oneunlimitos.llm.ClaudeApiClient
 import com.jinruoxinchen.oneunlimitos.mcp.McpServerManager
+import com.jinruoxinchen.oneunlimitos.mcp.implementations.MemoryMcpServer
 import com.jinruoxinchen.oneunlimitos.mcp.implementations.PersonalInfoMcpServer
 import com.jinruoxinchen.oneunlimitos.mcp.implementations.WeChatMcpServer
 import com.jinruoxinchen.oneunlimitos.memory.MemorySystem
@@ -96,6 +97,10 @@ class AgentManager : CoroutineScope {
         // Initialize Personal Information MCP server
         val personalInfoMcpServer = PersonalInfoMcpServer(accessibilityService)
         mcpServerManager.registerServer(personalInfoMcpServer)
+        
+        // Initialize Memory MCP server
+        val memoryMcpServer = MemoryMcpServer(memorySystem)
+        mcpServerManager.registerServer(memoryMcpServer)
         
         // Note: Additional MCP servers would be registered here as needed
         
